@@ -10,7 +10,7 @@ DroidDetective is a Python tool for analyzing Android applications (APKs) for po
 
 This model currently uses permissions from an APKs ```AndroidManifest.xml``` file as a feature set. This works by creating a dictionary of each standard Android permission and setting the feature to ```1``` if the permission is present in the APK. Similarly, a feature is added for the amount of permissions in use in the manifest and for the amount of unidentified permissions found in the manifest. 
 
-# 💪 Getting Started 
+# 🤖 Getting Started 
 ## Installation 
 All DroidDetective dependencies can be installed manually or via the requirements file, with 
 
