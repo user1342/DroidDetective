@@ -513,7 +513,6 @@ class APK_Analyser():
 if __name__ == '__main__':
 
     # a boolean, if set the ML model will be re-trained
-    should_train = False
     analyser = APK_Analyser()
     model_path = "apk_malware.model"
 
@@ -524,7 +523,7 @@ if __name__ == '__main__':
         raise Exception("Please provide an APK to analyse")
 
     # Check should train
-    if should_train:
+    if not os.path.isfile(model_path):
         if os.path.isdir("malware") and os.path.isdir("normal"):
             apk_info = analyser.train_model(malware_apks_folder_path="malware", normal_apks_folder_path="normal")
         else:
