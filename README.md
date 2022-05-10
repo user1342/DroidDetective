@@ -15,7 +15,7 @@ This model currently uses permissions from an APKs ```AndroidManifest.xml``` fil
 All DroidDetective dependencies can be installed manually or via the requirements file, with 
 
 ``` bash
-pip install -R REQUIREMENTS.txt
+pip install -r REQUIREMENTS.txt
 ```
 ## Usage 
 DroidDetective can be run by providing the Python file with an APK as a command line parameter, such as:
