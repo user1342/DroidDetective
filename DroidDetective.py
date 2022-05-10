@@ -16,7 +16,7 @@ class APK_Analyser():
     '''
 
     # This list is used to define all colums being analysed
-    colums = permissions_lookup_list = ['android.permission.ACCESS_ALL_DOWNLOADS',
+    colums = ['android.permission.ACCESS_ALL_DOWNLOADS',
                                         'android.permission.ACCESS_BLUETOOTH_SHARE',
                                         'android.permission.ACCESS_CACHE_FILESYSTEM',
                                         'android.permission.ACCESS_CHECKIN_PROPERTIES',
@@ -386,23 +386,28 @@ class APK_Analyser():
         # Get normal APKs
         for subdir, dirs, files in os.walk(normal_apks_folder_path):
             for filename in files:
-
-                full_path = os.path.join(subdir, filename)
-                print(full_path)
-                if filename.endswith(".apk"):
-                    apk_data = self.unpack_apk(full_path)
-                    list_of_apk_data = self.apk_variables_to_df_friendly_list(apk_data, is_malware=0)
-                    data_from_apks.append(list_of_apk_data)
+                try:
+                    full_path = os.path.join(subdir, filename)
+                    print(full_path)
+                    if filename.endswith(".apk"):
+                        apk_data = self.unpack_apk(full_path)
+                        list_of_apk_data = self.apk_variables_to_df_friendly_list(apk_data, is_malware=0)
+                        data_from_apks.append(list_of_apk_data)
+                except:
+                    print("Failed on file {}".format(filename))
 
         # Get malware APKs
         for subdir, dirs, files in os.walk(malware_apks_folder_path):
             for filename in files:
-                full_path = os.path.join(subdir, filename)
-                print(full_path)
-                if filename.endswith(".apk"):
-                    apk_data = self.unpack_apk(full_path)
-                    list_of_apk_data = self.apk_variables_to_df_friendly_list(apk_data, is_malware=1)
-                    data_from_apks.append(list_of_apk_data)
+                try:
+                    full_path = os.path.join(subdir, filename)
+                    print(full_path)
+                    if filename.endswith(".apk"):
+                        apk_data = self.unpack_apk(full_path)
+                        list_of_apk_data = self.apk_variables_to_df_friendly_list(apk_data, is_malware=1)
+                        data_from_apks.append(list_of_apk_data)
+                except:
+                    print("Failed on file {}".format(filename))
 
         # create dataframe
         df = pd.DataFrame(columns=self.colums)
