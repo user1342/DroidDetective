@@ -23,7 +23,7 @@ DroidDetective can be run by providing the Python file with an APK as a command 
 ```
 python DroidDetective.py myAndroidApp.apk
 ```
-If a ```apk_malware.model``` file is not present, then the tooling will first train the model and will require a training set of APKs in both the ```malware``` and ```normal``` folder. Once run successfully a result will be printed onto the CLI on if the model has identified the APK to be malicious or benign. An example of this output can be seen below:
+If an ```apk_malware.model``` file is not present, then the tooling will first train the model and will require a training set of APKs in both a folder at the root of the project called ```malware``` and another called ```normal```. Once run successfully a result will be printed onto the CLI on if the model has identified the APK to be malicious or benign. An example of this output can be seen below:
 
 ```
 >> Analysed file 'com.android.camera2.apk', identified as not malware.
