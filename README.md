@@ -29,7 +29,7 @@ If an ```apk_malware.model``` file is not present, then the tooling will first t
 >> Analysed file 'com.android.camera2.apk', identified as not malware.
 ```
 
-## ⚗️ Data Science | The ML Model
+# ⚗️ Data Science | The ML Model
 This model currently uses permissions from an APKs ```AndroidManifest.xml``` file as a feature set. This works by creating a dictionary of [each standard Android permission](https://gist.github.com/Arinerron/1bcaadc7b1cbeae77de0263f4e15156f) and setting the feature to ```1``` if the permission is present in the APK. Similarly, a feature is added for the amount of permissions in use in the manifest and for the amount of unidentified permissions found in the manifest. 
 
 The pre-trained model was trained off approximately 14 malware families (each with one or more APK files), located from [ashisdb's repository](https://github.com/ashishb/android-malware), and approximately 100 normal applications located from the Google Play Store.
