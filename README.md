@@ -15,6 +15,9 @@ All DroidDetective dependencies can be installed manually or via the requirement
 ``` bash
 pip install -r REQUIREMENTS.txt
 ```
+
+DroidDetective has been tested on both Windows 10 and Ubuntu 18.0 LTS.
+
 ## Usage 
 DroidDetective can be run by providing the Python file with an APK as a command line parameter, such as:
 ```
