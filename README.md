@@ -23,7 +23,11 @@ DroidDetective can be run by providing the Python file with an APK as a command 
 ```
 python DroidDetective.py myAndroidApp.apk
 ```
-If a ```apk_malware.model``` file is not present, then the tooling will first train the model and will require a training set of APKs in both the ```malware``` and ```normal``` folder. Once run successfully a result will be printed onto the CLI on if the model has identified the APK to be malicious or benign.
+If a ```apk_malware.model``` file is not present, then the tooling will first train the model and will require a training set of APKs in both the ```malware``` and ```normal``` folder. Once run successfully a result will be printed onto the CLI on if the model has identified the APK to be malicious or benign. An example of this output can be seen below:
+
+```
+>> Analysed file 'com.android.camera2.apk', identified as not malware.
+```
 
 ## ⚗️ Data Science | The ML Model
 This model currently uses permissions from an APKs ```AndroidManifest.xml``` file as a feature set. This works by creating a dictionary of [each standard Android permission](https://gist.github.com/Arinerron/1bcaadc7b1cbeae77de0263f4e15156f) and setting the feature to ```1``` if the permission is present in the APK. Similarly, a feature is added for the amount of permissions in use in the manifest and for the amount of unidentified permissions found in the manifest. 
