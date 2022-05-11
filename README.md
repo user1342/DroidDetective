@@ -32,6 +32,20 @@ If an ```apk_malware.model``` file is not present, then the tooling will first t
 >> Analysed file 'com.android.camera2.apk', identified as not malware.
 ```
 
+An additional parameter can be provided to ```DroidDetective.py``` as a Json file to save the results to. If this Json file already exists the results of this run will be appended to the Json file.
+
+```
+python DroidDetective.py myAndroidApp.apk output.json
+```
+
+An example of what this Json file could look like is as follows: 
+
+```json 
+{
+    "com.android.camera2": false,
+}
+```
+
 # ⚗️ Data Science | The ML Model
 DroidDetective is a Python tool for analyzing Android applications (APKs) for potential malware related behavior. This works by training a Random Forest classifier on information derived from both known malware APKs and standard APKs available on the Android app store. This tooling comes pre-trained, however, the model can be re-trained on a new dataset at any time. ⚙️
 
