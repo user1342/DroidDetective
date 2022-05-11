@@ -1,3 +1,4 @@
+import json
 import os
 import pickle
 import sys
@@ -507,7 +508,9 @@ class APK_Analyser():
 
         apk_data = self.unpack_apk(apk_path=apk_location)
         list_of_data = self.apk_variables_to_df_friendly_list(apk_data, is_malware=None)
-        return self.model.predict([list_of_data])
+        result = self.model.predict([list_of_data])
+
+        return result[0], apk_data
 
 
 if __name__ == '__main__':
@@ -533,12 +536,41 @@ if __name__ == '__main__':
     # Check if model exists
     if os.path.exists(model_path):
 
-        result = analyser.identify(file_to_check, model_path)[0]
+        result, apk_data = analyser.identify(file_to_check, model_path)
 
         if result == 1:
             print("Analysed file '{}', identified as malware!".format(file_to_check))
         else:
             print("Analysed file '{}', identified as not malware.".format(file_to_check))
+
+        # Second param is dst json file
+        if len(sys.argv) > 2:
+            dst_file = sys.argv[2]
+            if dst_file.endswith(".json"):
+
+                if result == 1:
+                    result = True
+                else:
+                    result = False
+
+
+                # check if file exists and if so append to the json, if not create new file
+                if os.path.isfile(dst_file) and not os.stat(dst_file).st_size == 0:
+                    with open(dst_file) as json_file :
+                        current_json_data = json.load(json_file)
+                        key = apk_data["package"]
+                        current_json_data[key] = result
+                        data_to_write = current_json_data
+                else:
+                    data_to_write = {apk_data["package"]: result}
+
+                with open(dst_file, 'w') as fp:
+                    json.dump(data_to_write, fp, indent=4)
+                print()
+
+            else:
+                raise Exception("A destination file was provided but it was not a Json file.")
+
 
     else:
         raise Exception("No model found, please train model")
