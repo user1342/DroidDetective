@@ -507,21 +507,16 @@ class APK_Analyser():
             self.f_measure = saved_file["f1"]
 
         # Loop through all feature importance scores and save to file
-        list_of_scores = []
+        weights = {}
         for iterator in range(len(self.model.feature_importances_)):
             weight = self.model.feature_importances_[iterator]
-            list_of_scores.append(weight)
+            weights[self.colums[iterator]] = weight
 
-        list_of_scores.sort(reverse=True)
-        output_text = ""
-        for iterator in range(len(self.model.feature_importances_)):
-            weight = list_of_scores[iterator]
-            if weight != 0:
-                output_text += "\n{}: {}".format(self.colums[iterator], round(weight,6))
+        sorted_weights = dict(sorted(weights.items(), key=lambda item: item[1]))
 
-        stats_file = open("model_stats.txt","w")
-        stats_file.write(output_text)
-
+        stats_file = open("model_stats.json","w")
+        json.dump(sorted_weights, stats_file, indent=4)
+        stats_file.close()
         apk_data = self.unpack_apk(apk_path=apk_location)
         list_of_data = self.apk_variables_to_df_friendly_list(apk_data, is_malware=None)
         result = self.model.predict([list_of_data])
