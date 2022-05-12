@@ -65,16 +65,17 @@ F-Measure: 0.9166666666666666
 The top 10 highest weighted features (i.e. Android permissions) used by this model, for identifying malware, can be seen below:
 
 ```
-android.permission.ACCESS_ALL_DOWNLOADS: 0.123922
-android.permission.ACCESS_BLUETOOTH_SHARE: 0.101895
-android.permission.ACCESS_CACHE_FILESYSTEM: 0.098359
-android.permission.ACCESS_CHECKIN_PROPERTIES: 0.08816
-android.permission.ACCESS_CONTENT_PROVIDERS_EXTERNALLY: 0.057042
-android.permission.ACCESS_DOWNLOAD_MANAGER: 0.039082
-android.permission.ACCESS_DOWNLOAD_MANAGER_ADVANCED: 0.035955
-android.permission.ACCESS_DRM_CERTIFICATES: 0.026399
-android.permission.ACCESS_EPHEMERAL_APPS: 0.02199
-android.permission.ACCESS_FM_RADIO: 0.021002
+"android.permission.SYSTEM_ALERT_WINDOW": 0.019091367939223395,
+"android.permission.ACCESS_NETWORK_STATE": 0.021001765263234648,
+"android.permission.ACCESS_WIFI_STATE": 0.02198962579120518,
+"android.permission.RECEIVE_BOOT_COMPLETED": 0.026398914436102188,
+"android.permission.GET_TASKS": 0.03595458598076517,
+"android.permission.WAKE_LOCK": 0.03908212881520419,
+"android.permission.WRITE_SMS": 0.057041576632290585,
+"android.permission.INTERNET": 0.08816028225034145,
+"android.permission.WRITE_EXTERNAL_STORAGE": 0.09835914154294739,
+"other_permission": 0.10189463965313218,
+"num_of_permissions": 0.12392224814084198
 ```
 
 
