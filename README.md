@@ -47,7 +47,7 @@ An example of what this Json file could look like is as follows:
 ```
 
 # ⚗️ Data Science | The ML Model
-DroidDetective is a Python tool for analyzing Android applications (APKs) for potential malware related behavior. This works by training a Random Forest classifier on information derived from both known malware APKs and standard APKs available on the Android app store. This tooling comes pre-trained, however, the model can be re-trained on a new dataset at any time. ⚙️
+DroidDetective is a Python tool for analyzing Android applications (APKs) for potential malware related behaviour. This works by training a Random Forest classifier on information derived from both known malware APKs and standard APKs available on the Android app store. This tooling comes pre-trained, however, the model can be re-trained on a new dataset at any time. ⚙️
 
 This model currently uses permissions from an APKs ```AndroidManifest.xml``` file as a feature set. This works by creating a dictionary of [each standard Android permission](https://gist.github.com/Arinerron/1bcaadc7b1cbeae77de0263f4e15156f) and setting the feature to ```1``` if the permission is present in the APK. Similarly, a feature is added for the amount of permissions in use in the manifest and for the amount of unidentified permissions found in the manifest. 
 
