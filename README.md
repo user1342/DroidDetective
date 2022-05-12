@@ -38,7 +38,7 @@ An additional parameter can be provided to ```DroidDetective.py``` as a Json fil
 python DroidDetective.py myAndroidApp.apk output.json
 ```
 
-An example of what this Json file could look like is as follows: 
+An example of this output Json is as follows: 
 
 ```json 
 {
