@@ -506,6 +506,22 @@ class APK_Analyser():
             self.precision = saved_file["precision"]
             self.f_measure = saved_file["f1"]
 
+        # Loop through all feature importance scores and save to file
+        list_of_scores = []
+        for iterator in range(len(self.model.feature_importances_)):
+            weight = self.model.feature_importances_[iterator]
+            list_of_scores.append(weight)
+
+        list_of_scores.sort(reverse=True)
+        output_text = ""
+        for iterator in range(len(self.model.feature_importances_)):
+            weight = list_of_scores[iterator]
+            if weight != 0:
+                output_text += "\n{}: {}".format(self.colums[iterator], round(weight,6))
+
+        stats_file = open("model_stats.txt","w")
+        stats_file.write(output_text)
+
         apk_data = self.unpack_apk(apk_path=apk_location)
         list_of_data = self.apk_variables_to_df_friendly_list(apk_data, is_malware=None)
         result = self.model.predict([list_of_data])
@@ -522,6 +538,11 @@ if __name__ == '__main__':
     # Check param given
     if len(sys.argv) > 1:
         file_to_check = sys.argv[1]
+
+        if not file_to_check.endswith(".apk"):
+            raise Exception("Please provide an .apk file.")
+
+
     else:
         raise Exception("Please provide an APK to analyse")
 
@@ -553,7 +574,6 @@ if __name__ == '__main__':
                 else:
                     result = False
 
-
                 # check if file exists and if so append to the json, if not create new file
                 if os.path.isfile(dst_file) and not os.stat(dst_file).st_size == 0:
                     with open(dst_file) as json_file :
@@ -570,7 +590,6 @@ if __name__ == '__main__':
 
             else:
                 raise Exception("A destination file was provided but it was not a Json file.")
-
 
     else:
         raise Exception("No model found, please train model")
