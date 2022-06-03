@@ -528,7 +528,7 @@ if __name__ == '__main__':
 
     # a boolean, if set the ML model will be re-trained
     analyser = APK_Analyser()
-    model_path = "apk_malware.model"
+    model_path = f"{os.path.dirname(os.path.abspath(__file__))}/apk_malware.model"
 
     # Check param given
     if len(sys.argv) > 1:
